@@ -21,5 +21,5 @@ Testing the Application:
 
 The local build contains linting (or static analysis) of the code and unit tests. Next, I ran an integration test. 
 
-The integration test finds the API Gateway Websocket endpoint, and it simulates a player completing a game. I then added a simple feature to the code. Finally, I fixed the unit tests and committed the changes to this repository.
+The integration test (The integration test uses the AWS SAM stack to find the Websocket endpoint, so the stack is passed in the AWS_SAM_STACK_NAME environment variable) finds the API Gateway Websocket endpoint, and it simulates a player completing a game. Then I added a simple feature to the code. Finally, I fixed the unit tests and committed the changes to this repository.
 
