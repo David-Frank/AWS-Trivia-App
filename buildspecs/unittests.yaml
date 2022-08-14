@@ -1,0 +1,22 @@
+version: 0.2
+
+
+phases:
+  install:
+    commands:
+      - pip3 install -U -r back-end-python/gameactions/requirements.txt
+      - pip3 install -U -r back-end-python/tests/requirements.txt
+
+  build:
+    commands:
+      - pylint --fail-under=8 back-end-python/gameactions/app.py
+      - pytest back-end-python/tests/unit --junit-xml=unittests.xml --cov-report=xml --cov=gameactions --cov-branch
+
+reports:
+  UnitTests:
+    files:
+      - 'unittests.xml'
+  NewCoverage: #
+    files:
+      - 'coverage.xml'
+    file-format: COBERTURAXML
