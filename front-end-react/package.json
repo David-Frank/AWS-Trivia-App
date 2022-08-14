@@ -1,0 +1,40 @@
+{
+2	  "name": "trivia-app",
+3	  "version": "0.1.0",
+4	  "private": true,
+5	  "dependencies": {
+6	    "@testing-library/jest-dom": "^5.13.0",
+7	    "@testing-library/react": "^11.2.7",
+8	    "@testing-library/user-event": "^12.8.3",
+9	    "bootstrap": "^4.6.0",
+10	    "react": "^17.0.2",
+11	    "react-bootstrap": "^1.6.1",
+12	    "react-countdown-circle-timer": "^2.5.3",
+13	    "react-dom": "^17.0.2",
+14	    "react-scripts": "^5.0.1"
+15	  },
+16	  "scripts": {
+17	    "start": "react-scripts start",
+18	    "build": "react-scripts build",
+19	    "test": "react-scripts test",
+20	    "eject": "react-scripts eject"
+21	  },
+22	  "eslintConfig": {
+23	    "extends": [
+24	      "react-app",
+25	      "react-app/jest"
+26	    ]
+27	  },
+28	  "browserslist": {
+29	    "production": [
+30	      ">0.2%",
+31	      "not dead",
+32	      "not op_mini all"
+33	    ],
+34	    "development": [
+35	      "last 1 chrome version",
+36	      "last 1 firefox version",
+37	      "last 1 safari version"
+38	    ]
+39	  }
+40	}
