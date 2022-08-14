@@ -1,0 +1,141 @@
+.aws-sam
+2	
+3	
+4	# Byte-compiled / optimized / DLL files
+5	__pycache__/
+6	*.py[cod]
+7	*$py.class
+8	
+9	# C extensions
+10	*.so
+11	
+12	# Distribution / packaging
+13	.Python
+14	build/
+15	develop-eggs/
+16	dist/
+17	downloads/
+18	eggs/
+19	.eggs/
+20	lib/
+21	lib64/
+22	parts/
+23	sdist/
+24	var/
+25	wheels/
+26	share/python-wheels/
+27	*.egg-info/
+28	.installed.cfg
+29	*.egg
+30	MANIFEST
+31	
+32	# PyInstaller
+33	#  Usually these files are written by a python script from a template
+34	#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+35	*.manifest
+36	*.spec
+37	
+38	# Installer logs
+39	pip-log.txt
+40	pip-delete-this-directory.txt
+41	
+42	# Unit test / coverage reports
+43	htmlcov/
+44	.tox/
+45	.nox/
+46	.coverage
+47	.coverage.*
+48	.cache
+49	nosetests.xml
+50	coverage.xml
+51	*.cover
+52	*.py,cover
+53	.hypothesis/
+54	.pytest_cache/
+55	cover/
+56	
+57	# Translations
+58	*.mo
+59	*.pot
+60	
+61	# Django stuff:
+62	*.log
+63	local_settings.py
+64	db.sqlite3
+65	db.sqlite3-journal
+66	
+67	# Flask stuff:
+68	instance/
+69	.webassets-cache
+70	
+71	# Scrapy stuff:
+72	.scrapy
+73	
+74	# Sphinx documentation
+75	docs/_build/
+76	
+77	# PyBuilder
+78	.pybuilder/
+79	target/
+80	
+81	# Jupyter Notebook
+82	.ipynb_checkpoints
+83	
+84	# IPython
+85	profile_default/
+86	ipython_config.py
+87	
+88	# pyenv
+89	#   For a library or package, you might want to ignore these files since the code is
+90	#   intended to run in multiple environments; otherwise, check them in:
+91	# .python-version
+92	
+93	# pipenv
+94	#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+95	#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+96	#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+97	#   install all needed dependencies.
+98	#Pipfile.lock
+99	
+100	# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+101	__pypackages__/
+102	
+103	# Celery stuff
+104	celerybeat-schedule
+105	celerybeat.pid
+106	
+107	# SageMath parsed files
+108	*.sage.py
+109	
+110	# Environments
+111	.env
+112	.venv
+113	env/
+114	venv/
+115	ENV/
+116	env.bak/
+117	venv.bak/
+118	
+119	# Spyder project settings
+120	.spyderproject
+121	.spyproject
+122	
+123	# Rope project settings
+124	.ropeproject
+125	
+126	# mkdocs documentation
+127	/site
+128	
+129	# mypy
+130	.mypy_cache/
+131	.dmypy.json
+132	dmypy.json
+133	
+134	# Pyre type checker
+135	.pyre/
+136	
+137	# pytype static type analyzer
+138	.pytype/
+139	
+140	# Cython debug symbols
+141	cython_debug/
