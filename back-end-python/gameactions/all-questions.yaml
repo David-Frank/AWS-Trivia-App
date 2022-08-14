@@ -1,0 +1,161 @@
+- id: q001
+2	  question: "What is the capital of India?"
+3	  options:
+4	    - Mumbai
+5	    - Delhi
+6	    - Bangalore
+7	    - Hyderabad
+8	  answer: "Delhi"
+9	
+10	- id: q002
+11	  question: "What is the capital of Canada?"
+12	  options:
+13	    - Toronto
+14	    - Montreal
+15	    - Vancouver
+16	    - Ottawa
+17	  answer: "Ottawa"
+18	
+19	- id: q003
+20	  question: "What is the capital of Australia?"
+21	  options:
+22	    - Sydney
+23	    - Melbourne
+24	    - Canberra
+25	    - Brisbane
+26	  answer: "Canberra"
+27	
+28	- id: q004
+29	  question: "What is the capital of The Philippines?"
+30	  options:
+31	    - Quezon City
+32	    - Manila
+33	    - Davao City
+34	    - Caloocan
+35	  answer: "Manila"
+36	
+37	- id: q005
+38	  question: "What is the capital of Mongolia?"
+39	  options:
+40	    - Ulaanbaatar
+41	    - Erdenet
+42	    - Darkhan
+43	    - Choibalsan
+44	  answer: "Ulaanbaatar"
+45	
+46	- id: q006
+47	  question: "What is the capital of Afghanistan?"
+48	  options:
+49	    - Kandahar
+50	    - Kabul
+51	    - Herat
+52	    - Jalalabad
+53	  answer: "Kabul"
+54	
+55	- id: q007
+56	  question: "What is the capital of Albania?"
+57	  options:
+58	    - Durres
+59	    - Elbasan
+60	    - Vlore
+61	    - Tirana
+62	  answer: "Tirana"
+63	
+64	- id: q008
+65	  question: "What is the capital of Algeria?"
+66	  options:
+67	    - Algiers
+68	    - Béchar
+69	    - Constantine
+70	    - Batna
+71	  answer: "Algiers"
+72	
+73	- id: q009
+74	  question: "What is the capital of Angola?"
+75	  options:
+76	    - N'dalatando
+77	    - Benguela 
+78	    - Luanda
+79	    - Uíge
+80	  answer: "Luanda"
+81	
+82	- id: q010
+83	  question: "What is the capital of Antigua and Barbuda?"
+84	  options:
+85	    - All Saints
+86	    - Saint John's
+87	    - Bolans
+88	    - Codrington 
+89	  answer: "Saint John's"
+90	
+91	- id: q011
+92	  question: "What is the capital of Belarus?"
+93	  options:
+94	    - Barysaw
+95	    - Maladzyechna
+96	    - Maryina Horka
+97	    - Minsk
+98	  answer: "Minsk"
+99	
+100	- id: q012
+101	  question: "What is the capital of Bhutan?"
+102	  options:
+103	    - Phuntsholing
+104	    - Thimphu
+105	    - Punakha
+106	    - Gelephu
+107	  answer: "Thimphu"
+108	
+109	- id: q013
+110	  question: "What is the capital of Brazil?"
+111	  options:
+112	    - São Paulo
+113	    - Rio de Janeiro
+114	    - Belo Horizonte
+115	    - Brasilia
+116	  answer: "Brasilia"
+117	
+118	- id: q014
+119	  question: "What is the capital of Bulgaria?"
+120	  options:
+121	    - Plovdiv
+122	    - Sofia
+123	    - Varna
+124	    - Burgas
+125	  answer: "Sofia"
+126	
+127	- id: q015
+128	  question: "What is the capital of Burkina Faso?"
+129	  options:
+130	    - Bobo-Dioulasso
+131	    - Ouagadougou
+132	    - Ouahigouya
+133	    - Kongoussi
+134	  answer: "Ouagadougou"
+135	
+136	- id: q016
+137	  question: "What is the capital of Cape Verde?"
+138	  options:
+139	    - Mindelo
+140	    - Espargos
+141	    - Tarrafal
+142	    - Praia
+143	  answer: "Praia"
+144	
+145	- id: q017
+146	  question: "What is the capital of Cuba?"
+147	  options:
+148	    - Camagüey
+149	    - Havana
+150	    - Holguín
+151	    - Santa Clara
+152	  answer: "Havana"
+153	
+154	- id: q018
+155	  question: "What is the capital of Dominican Republic?"
+156	  options:
+157	    - Santo Domingo
+158	    - Santiago de los Caballeros
+159	    - San Pedro de Macorís
+160	    - San Cristóbal
+161	  answer: "Santo Domingo"
