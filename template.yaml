@@ -1,0 +1,336 @@
+AWSTemplateFormatVersion: '2010-09-09'
+2	Transform: AWS::Serverless-2016-10-31
+3	Description: Trivia Game
+4	
+5	Resources:
+6	
+7	  TriviaWebSocket:
+8	    Type: AWS::ApiGatewayV2::Api
+9	    Properties:
+10	      Name: TriviaWebSocket
+11	      ProtocolType: WEBSOCKET
+12	      RouteSelectionExpression: "$request.body.action"
+13	
+14	  TriviaConnections:
+15	    Type: AWS::DynamoDB::Table
+16	    Properties:
+17	      AttributeDefinitions:
+18	      - AttributeName: "connectionId"
+19	        AttributeType: "S"
+20	      - AttributeName: "gameId"
+21	        AttributeType: "S"
+22	      KeySchema:
+23	      - AttributeName: "gameId"
+24	        KeyType: "HASH"
+25	      - AttributeName: "connectionId"
+26	        KeyType: "RANGE"
+27	      ProvisionedThroughput:
+28	        ReadCapacityUnits: 1
+29	        WriteCapacityUnits: 1
+30	
+31	  NewGameRoute:
+32	    Type: AWS::ApiGatewayV2::Route
+33	    Properties:
+34	      ApiId: !Ref TriviaWebSocket
+35	      RouteKey: newgame
+36	      AuthorizationType: NONE
+37	      OperationName: NewGameRoute
+38	      Target: !Join
+39	        - '/'
+40	        - - 'integrations'
+41	          - !Ref NewGameInteg
+42	  NewGameInteg:
+43	    Type: AWS::ApiGatewayV2::Integration
+44	    Properties:
+45	      ApiId: !Ref TriviaWebSocket
+46	      Description: NewGame Integration
+47	      IntegrationType: AWS_PROXY
+48	      IntegrationUri:
+49	        Fn::Sub:
+50	            arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${NewGameFunction.Arn}/invocations
+51	  NewGameFunction:
+52	    Type: AWS::Serverless::Function
+53	    Properties:
+54	      CodeUri: back-end-python/gameactions/
+55	      Handler: app.trivia_newgame
+56	      Runtime: python3.7
+57	      Environment:
+58	        Variables:
+59	          TABLE_NAME: !Ref TriviaConnections
+60	          APIGW_ENDPOINT:  !Sub "https://${TriviaWebSocket}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+61	      Policies:
+62	      - DynamoDBCrudPolicy:
+63	          TableName: !Ref TriviaConnections
+64	      - Statement:
+65	        - Effect: Allow
+66	          Action:
+67	          - 'execute-api:ManageConnections'
+68	          Resource:
+69	          - !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${TriviaWebSocket}/*'
+70	  NewGamePermission:
+71	    Type: AWS::Lambda::Permission
+72	    DependsOn:
+73	      - TriviaWebSocket
+74	    Properties:
+75	      Action: lambda:InvokeFunction
+76	      FunctionName: !Ref NewGameFunction
+77	      Principal: apigateway.amazonaws.com
+78	
+79	  JoinGameRoute:
+80	    Type: AWS::ApiGatewayV2::Route
+81	    Properties:
+82	      ApiId: !Ref TriviaWebSocket
+83	      RouteKey: joingame
+84	      AuthorizationType: NONE
+85	      OperationName: JoinGameRoute
+86	      Target: !Join
+87	        - '/'
+88	        - - 'integrations'
+89	          - !Ref JoinGameInteg
+90	  JoinGameInteg:
+91	    Type: AWS::ApiGatewayV2::Integration
+92	    Properties:
+93	      ApiId: !Ref TriviaWebSocket
+94	      Description: JoinGame Integration
+95	      IntegrationType: AWS_PROXY
+96	      IntegrationUri:
+97	        Fn::Sub:
+98	            arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${JoinGameFunction.Arn}/invocations
+99	  JoinGameFunction:
+100	    Type: AWS::Serverless::Function
+101	    Properties:
+102	      CodeUri: back-end-python/gameactions/
+103	      Handler: app.trivia_joingame
+104	      Runtime: python3.7
+105	      Environment:
+106	        Variables:
+107	          TABLE_NAME: !Ref TriviaConnections
+108	          APIGW_ENDPOINT:  !Sub "https://${TriviaWebSocket}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+109	      Policies:
+110	      - DynamoDBCrudPolicy:
+111	          TableName: !Ref TriviaConnections
+112	      - Statement:
+113	        - Effect: Allow
+114	          Action:
+115	          - 'execute-api:ManageConnections'
+116	          Resource:
+117	          - !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${TriviaWebSocket}/*'
+118	  JoinGamePermission:
+119	    Type: AWS::Lambda::Permission
+120	    DependsOn:
+121	      - TriviaWebSocket
+122	    Properties:
+123	      Action: lambda:InvokeFunction
+124	      FunctionName: !Ref JoinGameFunction
+125	      Principal: apigateway.amazonaws.com
+126	
+127	  StartGameRoute:
+128	    Type: AWS::ApiGatewayV2::Route
+129	    Properties:
+130	      ApiId: !Ref TriviaWebSocket
+131	      RouteKey: startgame
+132	      AuthorizationType: NONE
+133	      OperationName: StartGameRoute
+134	      Target: !Join
+135	        - '/'
+136	        - - 'integrations'
+137	          - !Ref StartGameInteg
+138	  StartGameInteg:
+139	    Type: AWS::ApiGatewayV2::Integration
+140	    Properties:
+141	      ApiId: !Ref TriviaWebSocket
+142	      Description: StartGame Integration
+143	      IntegrationType: AWS_PROXY
+144	      IntegrationUri:
+145	        Fn::Sub:
+146	            arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${StartGameFunction.Arn}/invocations
+147	  StartGameFunction:
+148	    Type: AWS::Serverless::Function
+149	    Properties:
+150	      CodeUri: back-end-python/gameactions/
+151	      Handler: app.trivia_startgame
+152	      Runtime: python3.7
+153	      Environment:
+154	        Variables:
+155	          TABLE_NAME: !Ref TriviaConnections
+156	          APIGW_ENDPOINT:  !Sub "https://${TriviaWebSocket}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+157	          STATE_MACHINE: !Ref TriviaStateMachine
+158	      Policies:
+159	      - DynamoDBCrudPolicy:
+160	          TableName: !Ref TriviaConnections
+161	      - Statement:
+162	        - Effect: Allow
+163	          Action:
+164	          - 'states:StartExecution'
+165	          Resource:
+166	          - '*'
+167	      - Statement:
+168	        - Effect: Allow
+169	          Action:
+170	          - 'execute-api:ManageConnections'
+171	          Resource:
+172	          - !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${TriviaWebSocket}/*'
+173	  StartGamePermission:
+174	    Type: AWS::Lambda::Permission
+175	    DependsOn:
+176	      - TriviaWebSocket
+177	    Properties:
+178	      Action: lambda:InvokeFunction
+179	      FunctionName: !Ref StartGameFunction
+180	      Principal: apigateway.amazonaws.com
+181	
+182	  AnswerRoute:
+183	    Type: AWS::ApiGatewayV2::Route
+184	    Properties:
+185	      ApiId: !Ref TriviaWebSocket
+186	      RouteKey: answer
+187	      AuthorizationType: NONE
+188	      OperationName: AnswerRoute
+189	      Target: !Join
+190	        - '/'
+191	        - - 'integrations'
+192	          - !Ref AnswerInteg
+193	  AnswerInteg:
+194	    Type: AWS::ApiGatewayV2::Integration
+195	    Properties:
+196	      ApiId: !Ref TriviaWebSocket
+197	      Description: Answer Integration
+198	      IntegrationType: AWS_PROXY
+199	      IntegrationUri:
+200	        Fn::Sub:
+201	            arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AnswerFunction.Arn}/invocations
+202	  AnswerFunction:
+203	    Type: AWS::Serverless::Function
+204	    Properties:
+205	      CodeUri: back-end-python/gameactions/
+206	      Handler: app.trivia_answer
+207	      Runtime: python3.7
+208	      Environment:
+209	        Variables:
+210	          TABLE_NAME: !Ref TriviaConnections
+211	          APIGW_ENDPOINT:  !Sub "https://${TriviaWebSocket}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+212	      Policies:
+213	      - DynamoDBCrudPolicy:
+214	          TableName: !Ref TriviaConnections
+215	      - Statement:
+216	        - Effect: Allow
+217	          Action:
+218	          - 'states:StartExecution'
+219	          Resource:
+220	          - '*'
+221	      - Statement:
+222	        - Effect: Allow
+223	          Action:
+224	          - 'execute-api:ManageConnections'
+225	          Resource:
+226	          - !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${TriviaWebSocket}/*'
+227	  AnswerPermission:
+228	    Type: AWS::Lambda::Permission
+229	    DependsOn:
+230	      - TriviaWebSocket
+231	    Properties:
+232	      Action: lambda:InvokeFunction
+233	      FunctionName: !Ref AnswerFunction
+234	      Principal: apigateway.amazonaws.com
+235	
+236	  QuestionFunction:
+237	    Type: AWS::Serverless::Function
+238	    Properties:
+239	      CodeUri: back-end-python/gameactions/
+240	      Handler: app.trivia_question
+241	      Runtime: python3.7
+242	      Environment:
+243	        Variables:
+244	          TABLE_NAME: !Ref TriviaConnections
+245	          APIGW_ENDPOINT:  !Sub "https://${TriviaWebSocket}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+246	      Policies:
+247	      - DynamoDBCrudPolicy:
+248	          TableName: !Ref TriviaConnections
+249	      - Statement:
+250	        - Effect: Allow
+251	          Action:
+252	          - 'execute-api:ManageConnections'
+253	          Resource:
+254	          - !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${TriviaWebSocket}/*'
+255	
+256	  CalculateScoresFunction:
+257	    Type: AWS::Serverless::Function
+258	    Properties:
+259	      CodeUri: back-end-python/gameactions/
+260	      Handler: app.trivia_calculate_scores
+261	      Runtime: python3.7
+262	      Environment:
+263	        Variables:
+264	          TABLE_NAME: !Ref TriviaConnections
+265	          APIGW_ENDPOINT:  !Sub "https://${TriviaWebSocket}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+266	      Policies:
+267	      - DynamoDBCrudPolicy:
+268	          TableName: !Ref TriviaConnections
+269	      - Statement:
+270	        - Effect: Allow
+271	          Action:
+272	          - 'execute-api:ManageConnections'
+273	          Resource:
+274	          - !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${TriviaWebSocket}/*'
+275	
+276	  Deployment:
+277	    Type: AWS::ApiGatewayV2::Deployment
+278	    DependsOn:
+279	     - NewGameRoute
+280	     - JoinGameRoute
+281	     - NewGameRoute
+282	     - JoinGameRoute
+283	     - StartGameRoute
+284	     - AnswerRoute
+285	
+286	    Properties:
+287	      ApiId: !Ref TriviaWebSocket
+288	
+289	  Stage:
+290	    Type: AWS::ApiGatewayV2::Stage
+291	    Properties:
+292	      StageName: Prod
+293	      Description: Prod Stage
+294	      DeploymentId: !Ref Deployment
+295	      ApiId: !Ref TriviaWebSocket
+296	
+297	  TriviaStateMachine:
+298	    Type: AWS::Serverless::StateMachine
+299	    Properties:
+300	      Policies:
+301	        - LambdaInvokePolicy:
+302	            FunctionName: !Ref QuestionFunction
+303	        - LambdaInvokePolicy:
+304	            FunctionName: !Ref CalculateScoresFunction
+305	      Definition:
+306	        StartAt: Question
+307	        States:
+308	          Question:
+309	            Type: Task
+310	            Resource: !GetAtt QuestionFunction.Arn
+311	            Next: QuestionWait
+312	            ResultPath:
+313	          QuestionWait:
+314	            Type: Wait
+315	            SecondsPath: $.waitseconds
+316	            Next: Scores
+317	          Scores:
+318	            Type: Task
+319	            Resource: !GetAtt CalculateScoresFunction.Arn
+320	            Next: IsGameOver
+321	            ResultPath: "$.iterator"
+322	          IsGameOver:
+323	            Type: Choice
+324	            Choices:
+325	            - Variable: "$.iterator.IsGameOver"
+326	              BooleanEquals: true
+327	              Next: GameOver
+328	            Default: Question
+329	          GameOver:
+330	            Type: Succeed
+331	
+332	
+333	Outputs:
+334	  TriviaWebSocketApi:
+335	    Description: "API Gateway websockets endpoint"
+336	    Value: !Sub "wss://${TriviaWebSocket}.execute-api.${AWS::Region}.amazonaws.com/${Stage}"
