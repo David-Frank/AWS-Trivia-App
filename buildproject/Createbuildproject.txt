@@ -1,0 +1,10 @@
+Choose Create build project and configure the following settings on AWS CODEBUILD.
+
+Project name: trivia-unittests
+Repository: trivia-app
+Branch: main
+Operating system: Ubuntu
+Runtime(s): Standard
+Image: aws/codebuild/standard:5.0
+Build specifications: Keep Use a buildspec file selected
+Buildspec name - optional: buildspecs/unittests.yaml
