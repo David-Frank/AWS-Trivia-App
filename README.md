@@ -25,7 +25,7 @@ The integration test (The integration test uses the AWS SAM stack to find the We
 
 
 
---Using AWS CodeBuild:
+--Using AWS CodeBuild to Test the Application Once More:
 
 I began by updating the application with a buildspec file, and using CodeBuild to test the application. 
 
