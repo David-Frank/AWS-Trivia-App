@@ -37,22 +37,3 @@ The buildspec file contains the same tests I performed with the local build: lin
 
 Finally, I start by using AWS CodePipeline to create a new pipeline. I created a new feature branch in the repository and edited some application code. I then committed the changes to the new feature branch and merged the feature branch into my main branch.
 
-
-<p align="center">
-  <a href="https://github.com/David Frank/Trivia-App/generate">
-    <img width="100%" src="https://i.imgur.com/SVvgxJF.png" alt="@Josee9988/project-template's">
-  </a>
-  <br>
-  <a href="https://github.com/Josee9988/project-template/issues">
-    <img src="https://img.shields.io/github/issues/Josee9988/project-template?color=0088ff&style=for-the-badge&logo=github" alt="@Josee9988/project-template's issues"/>
-  </a>
-  <a href="https://github.com/josee9988/project-template/pulls">
-    <img src="https://img.shields.io/github/issues-pr/Josee9988/project-template?color=0088ff&style=for-the-badge&logo=github" alt="@Josee9988/project-template's pull requests"/>
-  </a>
-  <a href="https://github.com/Josee9988/project-template/generate">
-    <img src="https://img.shields.io/badge/use%20this-template-blue?logo=github-sponsors&style=for-the-badge&color=green" alt="@Josee9988/project-template link to create a new repository from the template">
-  </a>
-  <a href="https://github.com/Josee9988/project-template/actions/workflows/shelltest.yml">
-    <img src="https://github.com/Josee9988/project-template/actions/workflows/shelltest.yml/badge.svg" alt="@Josee9988/project-template's tests">
-  </a>
-</p>
