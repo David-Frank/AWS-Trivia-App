@@ -1,0 +1,10 @@
+version = 0.1
+2	[default]
+3	[default.deploy]
+4	[default.deploy.parameters]
+5	stack_name = "trivia-app"
+6	s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1hv09ada9q4za"
+7	s3_prefix = "trivia-app"
+8	region = "us-east-2"
+9	capabilities = "CAPABILITY_IAM"
+10	image_repositories = []
