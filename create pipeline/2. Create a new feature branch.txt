@@ -1,0 +1,11 @@
+create a new feature branch in your AWS CodeCommit repository.
+
+In a separate browser tab, switch to the AWS Cloud9 development environment. Make sure that you are in the trivia-app directory.
+
+cd ~/environment/trivia-app
+Create a feature branch by running the following command:
+
+git checkout -b feature-bonus-scores
+You should see that you created a new branch and switched to that branch:
+
+Switched to a new branch 'feature-bonus-scores'
