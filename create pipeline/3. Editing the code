@@ -1,0 +1,54 @@
+you edit the code to implement a bonus scores feature.
+
+Open the trivia-app/back-end-python/gameactions/app.py file.
+
+In the trivia_calculate_scores function, locate the code where last_answer is set.
+
+On the next line, add code to set the bonus variable:
+
+last_answer = connection["lastAnswer"] if "lastAnswer" in connection else ""
+bonus = question["bonus"] if "bonus" in question else 0
+You also need to add the bonus variable to the calculation logic. Update the code incrementing score so that it includes bonus.
+
+Code before:
+
+if last_question_id == question["id"] and last_answer == question["answer"]:
+    score += 20
+Code after:
+
+if last_question_id == question["id"] and last_answer == question["answer"]:
+        score += 20 + bonus
+Save the file.
+
+You also need to update the unit tests code so that it tests the new bonus score. Open the trivia-app/back-end-python/tests/unit/test_handler.py file.
+
+Replace SCORES_EVENT with a new event that includes a bonus score:
+
+SCORES_EVENT = {
+"gameid" : "01234567012301230123012345678901",
+"questions" : [
+    { "id" : "q-1111", "question" : "Good question?", "answer" : "Yes", "bonus": 20},
+],
+"iterator" : { "questionpos" : 0 }
+}
+Save the file.
+
+Find the test_trivia_calculate_scores_correct section and change the assert statements to expect a score of 40.
+
+app.TABLE.update_item.assert_called_with(
+    Key={'gameId': '01234567012301230123012345678901', 'connectionId': 'connection-1'},
+    AttributeUpdates={'score': {'Value': 40, 'Action': 'PUT'}}
+)
+
+app.MANAGEMENT.post_to_connection.assert_has_calls([
+    mock.call(Data='{"action": "playerlist", "players": [{"connectionId": "connection-1", "playerName": "AliceBlue", "score": 40, "currentPlayer": true}]}', ConnectionId='connection-1'),
+    mock.call(Data='{"action": "gameover"}', ConnectionId='connection-1')
+    ])
+Save the file.
+
+Verify that the code is stable by running the unit test.
+
+./local_build.sh
+You should see that everything passed.
+
+(Optional) You can verify that the coverage is still 100 percent by previewing the htmlcov/index.html file.
