@@ -1,0 +1,24 @@
+Use AWS CodePipeline to create a pipeline.
+
+In the console, choose Services, and search for and select CodePipeline.
+
+Choose Create pipeline.
+
+For Pipeline name, enter trivia-pipeline and choose Next.
+
+In the Add source stage step, configure the following settings:
+
+Source provider: AWS CodeCommit
+Repository name: trivia-app
+Branch name: main
+Choose Next.
+
+In the Add build stage step, configure the following settings.
+
+Build provider: AWS CodeBuild
+Project name: trivia-unittests
+Choose Next.
+
+In the Add deploy stage step, choose Skip deploy stage and then choose Skip.
+
+In the Review step, choose Create pipeline. You should see a Success message.
