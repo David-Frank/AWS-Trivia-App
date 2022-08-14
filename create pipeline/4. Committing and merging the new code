@@ -1,0 +1,57 @@
+In this final task, you commit the new code to your feature branch in AWS CodeCommit. You then merge the changes into the main branch.
+
+In the AWS Cloud9 terminal, view the status of your git repository by running the following command:
+
+git status
+You should see that status of the two files changed to not staged for commit.
+
+modified:   back-end-python/gameactions/app.py
+modified:   back-end-python/tests/unit/test_handler.py
+Add the files, create a commit, and push the changes to the origin remote.
+
+git add *
+git commit -m "new bonus score feature"
+git push origin feature-bonus-scores
+As of now, you haven’t made any changes to the main branch yet.
+
+Switch back to the CodePipeline tab.
+
+Choose Services and then select CodeCommit.
+
+In CodeCommit, open the trivia-app repository and in the navigation pane, choose Commits.
+
+On the right, view the bonus score commit by opening the dropdown menu with main and selecting feature-bonus-scores.
+
+At the top of the window, choose the trivia-app breadcrumb.
+
+Choose Create pull request.
+
+For Destination, keep main selected and for Source, choose feature-bonus-scores.
+
+Choose Compare. You can scroll down to see the code changes that you made.
+
+In Details > Title, enter New feature: Bonus scoring. Choose Create pull request.
+
+Choose Merge.
+
+Keep both Fast forward merge and Delete source branch feature-bonus-scores after merging? selected. Choose Merge pull request.
+
+In the navigation pane, see the new merge commit by choosing Commits.
+
+In the navigation pane, open the CodePipeline console by choosing Pipeline > Pipelines.
+
+View the pipeline details by opening trivia-pipeline. In the Source section, you should see the new commit: Source: new bonus score feature
+
+Review the Build section. The recently merged commit on the main branch triggered a pipeline build.
+
+pipeline_build
+pipeline_build
+Switch back to the AWS Cloud9 tab.
+
+The new features you committed have been merged to main. Update the main branch locally by running the following commands:
+
+git checkout main
+git pull origin main
+git log
+In the Git log, you should see the new bonus score feature commit.
+
