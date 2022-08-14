@@ -1,0 +1,7 @@
+boto3
+2	pylint
+3	pytest
+4	pytest-mock
+5	pytest-cov
+6	requests
+7	websockets
