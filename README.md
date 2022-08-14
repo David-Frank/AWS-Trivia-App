@@ -23,3 +23,10 @@ The local build contains linting (or static analysis) of the code and unit tests
 
 The integration test (The integration test uses the AWS SAM stack to find the Websocket endpoint, so the stack is passed in the AWS_SAM_STACK_NAME environment variable) finds the API Gateway Websocket endpoint, and it simulates a player completing a game. Then I added a simple feature to the code. Finally, I fixed the unit tests and committed the changes to this repository.
 
+
+
+Using AWS CodeBuild:
+
+I began by updating the application with a buildspec file, and using CodeBuild to test the application. 
+
+The buildspec file contains the same tests I performed with the local build: linting with pylint, and unit tests with pytest. I also used CodeBuild to run the unit tests against the application, and then I viewed the log output.
