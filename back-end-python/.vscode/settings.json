@@ -1,0 +1,8 @@
+{
+2	    "python.testing.pytestArgs": [
+3	        "tests"
+4	    ],
+5	    "python.testing.unittestEnabled": false,
+6	    "python.testing.nosetestsEnabled": false,
+7	    "python.testing.pytestEnabled": true
+8	}
