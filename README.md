@@ -39,7 +39,7 @@ Finally, I start by using AWS CodePipeline to create a new pipeline. I created a
 
 
 <p align="center">
-  <a href="https://github.com/Josee9988/project-template/generate">
+  <a href="https://github.com/David Frank/Trivia-App/generate">
     <img width="100%" src="https://i.imgur.com/SVvgxJF.png" alt="@Josee9988/project-template's">
   </a>
   <br>
